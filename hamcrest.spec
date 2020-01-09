@@ -55,7 +55,7 @@
 
 Name:           hamcrest
 Version:        1.1
-Release:        9.4%{?dist}
+Release:        9.5%{?dist}
 Epoch:          0
 Summary:        Library of matchers for building test expressions
 License:        BSD
@@ -73,7 +73,7 @@ Source8:        hamcrest-core-MANIFEST.MF
 Patch0:         hamcrest-1.1-build.patch
 Patch1:         hamcrest-1.1-no-jarjar.patch
 Patch2:         hamcrest-1.1-no-integration.patch
-Requires:       java-1.6.0
+Requires:       java >= 1:1.6.0
 %if %with integration
 Requires:       easymock2
 Requires:       jmock
@@ -257,6 +257,8 @@ ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_datadir}/%{name}
 
 %if %{gcj_support}
 %{_bindir}/aot-compile-rpm
+# it sometimes nondeterministically generates other files
+find $RPM_BUILD_ROOT%{_libdir}/gcj/ -not -name 'all-%{version}*' -type f -delete
 %endif
 
 %clean
@@ -327,6 +329,9 @@ fi
 %{_datadir}/%{name}
 
 %changelog
+* Tue Dec 01 2015 Michael Simacek <msimacek@redhat.com> - 0:1.1-9.5
+- Don't require java 6 specifically
+
 * Mon Jan 11 2010 Andrew Overholt <overholt@redhat.com> 0:1.1-9.4
 - Add variable for shipping maven files.  Default to no.
 
