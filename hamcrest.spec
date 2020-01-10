@@ -50,7 +50,7 @@
 
 Name:           hamcrest
 Version:        1.3
-Release:        5%{?dist}
+Release:        6%{?dist}
 Epoch:          0
 Summary:        Library of matchers for building test expressions
 License:        BSD
@@ -255,6 +255,9 @@ cp -pr %{name}-examples $RPM_BUILD_ROOT%{_datadir}/%{name}/
 %{_datadir}/%{name}
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 01.3-6
+- Mass rebuild 2013-12-27
+
 * Wed Jul 31 2013 Michal Srb <msrb@redhat.com> - 0:1.3-5
 - Fix R: easymock3 -> easymock2
 
